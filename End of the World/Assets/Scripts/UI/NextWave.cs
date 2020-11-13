@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class NextWave : MonoBehaviour
 {
+	[SerializeField] private AudioSource clickAudio;
 	private WaveSystem wave;
 
     // Start is called before the first frame update
@@ -15,6 +16,7 @@ public class NextWave : MonoBehaviour
 
     public void StartNextWave()
 	{
+		clickAudio.Play(0);
 		wave.StartNextWave();
 	}
 }

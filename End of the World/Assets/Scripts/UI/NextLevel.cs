@@ -7,9 +7,13 @@ public class NextLevel : MonoBehaviour
 {
 	public Button btnNextLevel;
 
+	[SerializeField] private AudioSource upgradeCanonAudio;
+	[SerializeField] private AudioSource noMoneyAudio;
 	private UpgradeTurret upgradeTurret;
 	private TurretShoot turret;
 	private CoinManager coinManager;
+
+
 
 	void Start()
 	{
@@ -24,8 +28,13 @@ public class NextLevel : MonoBehaviour
 	{
 		if (coinManager.coins >= turret.upgradeCost)
 		{
+			upgradeCanonAudio.Play(0);
 			upgradeTurret.LevelUp();
 			coinManager.coins -= turret.upgradeCost;
+		}
+		else
+		{
+			noMoneyAudio.Play(0);
 		}
 	}
 }

@@ -6,8 +6,13 @@ using UnityEngine.UI;
 public class HealEarth : MonoBehaviour
 {
 	[SerializeField] private Button btnHeal;
+	[SerializeField] private AudioSource healAudio;
+	[SerializeField] private AudioSource noMoneyAudio;
+
 	private Earth earth;
 	private CoinManager coinManager;
+
+	private int healCost = 20;
 
 	// Start is called before the first frame update
 	void Start()
@@ -18,14 +23,29 @@ public class HealEarth : MonoBehaviour
 
     public void Heal()
     {
-		if(coinManager.coins >= 20)
+		if (coinManager.coins >= healCost)
 		{
-			coinManager.coins -= 20;
-			earth.HealEarth();
+			if(earth.health < 100)
+			{
+				coinManager.coins -= healCost;
+				earth.HealEarth();
+				healAudio.Play(0);
+			}
+			else
+			{
+				CantHeal();
+				Debug.Log("Earth already full health");
+			}
 		}
 		else
 		{
-			btnHeal.image.color = Color.red;
+			CantHeal();
 		}
     }
+
+	private void CantHeal()
+	{
+		LeanTween.scale(gameObject, new Vector2(.1f, .1f), .1f).setLoopPingPong(1);
+		noMoneyAudio.Play(0);
+	}
 }
