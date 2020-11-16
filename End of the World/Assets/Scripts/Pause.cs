@@ -5,38 +5,48 @@ using UnityEngine;
 public class Pause : MonoBehaviour
 {
 	[SerializeField] private GameObject optionsMenu;
-	
-	// Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	[SerializeField] private GameObject upgradeMenu;
+	private bool isPaused = false;
 
 	// Update is called once per frame
 	void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.Escape))
 		{
-			if (!optionsMenu.activeInHierarchy)
-			{
-				PauseGame();
-			}
-			if (optionsMenu.activeInHierarchy)
+			if(isPaused)
 			{
 				ContinueGame();
+			}
+			else
+			{
+				PauseGame();
 			}
 		}
 	}
 	private void PauseGame()
 	{
-		Time.timeScale = 0;
+		Debug.Log("Pause game");
+		WaveSystem.state = State.Paused;
+
+		isPaused = true;
 		optionsMenu.SetActive(true);
-		//Disable scripts that still work while timescale is set to 0
+		Time.timeScale = 0;
 	}
-	private void ContinueGame()
+
+	public void ContinueGame()
 	{
-		Time.timeScale = 1;
+		Debug.Log("Resume game");
+		if (upgradeMenu.activeInHierarchy)
+		{
+			WaveSystem.state = State.Upgrading;
+		}
+		else
+		{
+			WaveSystem.state = State.InBattle;
+		}
+
+		isPaused = false;
 		optionsMenu.SetActive(false);
-		//enable the scripts again
+		Time.timeScale = 1;
 	}
 }

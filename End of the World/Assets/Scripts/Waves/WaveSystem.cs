@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WaveSystem : MonoBehaviour
 {
-	public State state;
+	[SerializeField] public static State state;
 
 	[SerializeField] private List<Wave> waves;
 	[SerializeField] private GameObject upgradeMenu;
@@ -49,11 +49,11 @@ public class WaveSystem : MonoBehaviour
 
 				if (currentWave.enemyCount <= 0)
 				{
-					if(GameObject.FindGameObjectsWithTag("Enemy").Length <= 0)
+					if (GameObject.FindGameObjectsWithTag("Enemy").Length <= 0)
 					{
 						Debug.Log("End of Wave");
 						// End of wave
-						state = State.Upgrading;
+						WaveSystem.state = State.Upgrading;
 						currentWave.isWaveDone = true;
 
 						// Open Upgrade Menu
@@ -63,6 +63,7 @@ public class WaveSystem : MonoBehaviour
 					}
 				}
 			}
+			
 		}
 	}
 

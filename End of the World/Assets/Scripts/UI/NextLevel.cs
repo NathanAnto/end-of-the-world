@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,29 +12,26 @@ public class NextLevel : MonoBehaviour
 	[SerializeField] private AudioSource noMoneyAudio;
 	private UpgradeTurret upgradeTurret;
 	private TurretShoot turret;
-	private CoinManager coinManager;
-
-
 
 	void Start()
 	{
 		turret = GameObject.Find("Turret").gameObject.transform.GetChild(1).GetComponent<TurretShoot>();
-		btnNextLevel.GetComponentInChildren<Text>().text = "Next Level \n" + turret.upgradeCost + " Coins";
+		btnNextLevel.GetComponentInChildren<TextMeshProUGUI>().text = "Next Level \n" + turret.upgradeCost + " Coins";
 
 		upgradeTurret = GameObject.Find("Turret").GetComponent<UpgradeTurret>();
-		coinManager = GameObject.Find("CoinManager").GetComponent<CoinManager>();
 	}
 
 	public void LevelUpTurret()
 	{
-		if (coinManager.coins >= turret.upgradeCost)
+		if (CoinManager.coins >= turret.upgradeCost)
 		{
 			upgradeCanonAudio.Play(0);
+			CoinManager.coins -= turret.upgradeCost;
 			upgradeTurret.LevelUp();
-			coinManager.coins -= turret.upgradeCost;
 		}
 		else
 		{
+			LeanTween.scale(gameObject, new Vector2(.1f, .1f), .1f).setLoopPingPong(1);
 			noMoneyAudio.Play(0);
 		}
 	}

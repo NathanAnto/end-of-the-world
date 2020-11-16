@@ -10,6 +10,7 @@ abstract public class Enemy : MonoBehaviour
 	[SerializeField] private float speed;
 	private GameObject target;
 	private Vector2 targetPos;
+	private Rigidbody2D rb2D;
 
 	protected float damageToEarth;
 	protected abstract void SetHealth();
@@ -18,22 +19,30 @@ abstract public class Enemy : MonoBehaviour
 	{
 		target = GameObject.Find("Earth").gameObject;
 		targetPos = target.transform.position;
+		rb2D = GetComponent<Rigidbody2D>();
 
 		SetHealth();
 	}
 	
     void Update()
     {
-		float step = speed * Time.deltaTime;
-		transform.position = Vector2.MoveTowards(transform.position, targetPos, step);
+		if (WaveSystem.state == State.InBattle)
+		{ 
+			float step = speed * Time.deltaTime;
+			transform.position = Vector2.MoveTowards(transform.position, targetPos, step);
 
-		Earth earth = target.GetComponent<Earth>();
+			Earth earth = target.GetComponent<Earth>();
 
-		if(transform.position == target.transform.position)
+			if (transform.position == target.transform.position)
+			{
+				Debug.Log(damageToEarth + " Damage dealt to earth");
+				earth.DamageEarth(damageToEarth);
+				Destroy(gameObject);
+			}
+		}
+		else
 		{
-			Debug.Log(damageToEarth + " Damage dealt to earth");
-			earth.DamageEarth(damageToEarth);
-			Destroy(gameObject);
+			rb2D.velocity = Vector3.zero;
 		}
 	}
 

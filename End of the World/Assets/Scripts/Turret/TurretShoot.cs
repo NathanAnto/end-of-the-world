@@ -25,7 +25,7 @@ public class TurretShoot : MonoBehaviour
 
 	private void Shoot()
 	{
-		State state = GameObject.Find("Waves").GetComponent<WaveSystem>().state;
+		State state = WaveSystem.state;
 
 		// Shoot only during a wave
 		if (state == State.InBattle)

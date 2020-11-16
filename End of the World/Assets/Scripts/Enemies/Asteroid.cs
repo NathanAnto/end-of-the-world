@@ -6,9 +6,9 @@ public class Asteroid : Enemy
 {
 	protected override void SetHealth()
 	{
-		damageToEarth = 5f;
 		hp = Random.Range(10, 21);
 
+		damageToEarth = hp - 5f;
 		coinsOnDeath = hp-5;
 
 		float scale = hp / 10;

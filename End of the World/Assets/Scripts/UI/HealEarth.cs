@@ -23,11 +23,11 @@ public class HealEarth : MonoBehaviour
 
     public void Heal()
     {
-		if (coinManager.coins >= healCost)
+		if (CoinManager.coins >= healCost)
 		{
 			if(earth.health < 100)
 			{
-				coinManager.coins -= healCost;
+				CoinManager.coins -= healCost;
 				earth.HealEarth();
 				healAudio.Play(0);
 			}

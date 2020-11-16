@@ -8,21 +8,20 @@ public class UpgradeTurret : MonoBehaviour
 	public GameObject currentTurret;
 
 	private GameObject turret;
-	private CoinManager coinManager;
 
     // Start is called before the first frame update
     void Start()
-    {
+	{
 		currentTurret = turrets[0];
 		turret = gameObject.transform.GetChild(1).gameObject;
-		coinManager = GameObject.Find("CoinManager").GetComponent<CoinManager>();
     }
 
 	public void LevelUp()
 	{
 		var upgradeCost = turret.GetComponent<TurretShoot>().upgradeCost;
+		Debug.Log("Upgrade cost: " + upgradeCost);
 
-		coinManager.coins -= upgradeCost;
+		CoinManager.coins -= upgradeCost;
 		// Remove old turret
 		turrets.RemoveAt(0);
 
