@@ -12,6 +12,7 @@ public class NextLevel : MonoBehaviour
 	[SerializeField] private AudioSource noMoneyAudio;
 	private UpgradeTurret upgradeTurret;
 	private TurretShoot turret;
+	private string btnText;
 
 	void Start()
 	{
@@ -25,14 +26,14 @@ public class NextLevel : MonoBehaviour
 	{
 		if (CoinManager.coins >= turret.upgradeCost)
 		{
-			upgradeCanonAudio.Play(0);
-			CoinManager.coins -= turret.upgradeCost;
+			LeanTween.scale(gameObject, new Vector2(.1f, .1f), .1f).setLoopPingPong(1);
+			upgradeCanonAudio.Play();
 			upgradeTurret.LevelUp();
+			btnNextLevel.GetComponentInChildren<TextMeshProUGUI>().text = "Next Level \n" + upgradeTurret.upgradeCost + " Coins";
 		}
 		else
 		{
-			LeanTween.scale(gameObject, new Vector2(.1f, .1f), .1f).setLoopPingPong(1);
-			noMoneyAudio.Play(0);
+			noMoneyAudio.Play();
 		}
 	}
 }

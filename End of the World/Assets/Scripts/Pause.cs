@@ -13,7 +13,7 @@ public class Pause : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.Escape))
 		{
-			if(isPaused)
+			if (isPaused)
 			{
 				ContinueGame();
 			}

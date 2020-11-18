@@ -12,7 +12,8 @@ public class CoinManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-		coinText = GameObject.Find("Canvas/UpgradeMenu/Coins").GetComponent<Text>();
+		coins = 0;
+		coinText = GameObject.Find("Canvas/Coins").GetComponent<Text>();
     }
 
     // Update is called once per frame
@@ -20,9 +21,4 @@ public class CoinManager : MonoBehaviour
     {
 		coinText.text = coins + " Coins";
     }
-
-	public void AddCoins(int amount)
-	{
-		coins += amount;
-	}
 }

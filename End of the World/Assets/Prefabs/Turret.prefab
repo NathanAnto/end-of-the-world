@@ -49,7 +49,12 @@ MonoBehaviour:
   turrets:
   - {fileID: 179510359614256594, guid: 630ce7ba2d4c0114a90b221432800cbe, type: 3}
   - {fileID: 179510359614256594, guid: 02d37d6b7744ee24e90ad2f8e82cb1bd, type: 3}
+  - {fileID: 179510359614256594, guid: 630ce7ba2d4c0114a90b221432800cbe, type: 3}
+  - {fileID: 179510359614256594, guid: 02d37d6b7744ee24e90ad2f8e82cb1bd, type: 3}
+  - {fileID: 179510359614256594, guid: 630ce7ba2d4c0114a90b221432800cbe, type: 3}
+  - {fileID: 179510359614256594, guid: 02d37d6b7744ee24e90ad2f8e82cb1bd, type: 3}
   currentTurret: {fileID: 0}
+  upgradeCost: 0
 --- !u!114 &1821904492
 MonoBehaviour:
   m_ObjectHideFlags: 0

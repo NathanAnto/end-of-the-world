@@ -10,7 +10,6 @@ public class HealEarth : MonoBehaviour
 	[SerializeField] private AudioSource noMoneyAudio;
 
 	private Earth earth;
-	private CoinManager coinManager;
 
 	private int healCost = 20;
 
@@ -18,7 +17,6 @@ public class HealEarth : MonoBehaviour
 	void Start()
 	{
 		earth = GameObject.Find("Earth").GetComponent<Earth>();
-		coinManager = GameObject.Find("CoinManager").GetComponent<CoinManager>();
 	}
 
     public void Heal()
@@ -29,7 +27,8 @@ public class HealEarth : MonoBehaviour
 			{
 				CoinManager.coins -= healCost;
 				earth.HealEarth();
-				healAudio.Play(0);
+				healAudio.Play();
+				LeanTween.scale(gameObject, new Vector2(1f, 1f), .1f).setLoopPingPong(1);
 			}
 			else
 			{
@@ -45,7 +44,6 @@ public class HealEarth : MonoBehaviour
 
 	private void CantHeal()
 	{
-		LeanTween.scale(gameObject, new Vector2(.1f, .1f), .1f).setLoopPingPong(1);
-		noMoneyAudio.Play(0);
+		noMoneyAudio.Play();
 	}
 }

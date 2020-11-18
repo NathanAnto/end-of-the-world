@@ -4,16 +4,17 @@ using UnityEngine;
 
 abstract public class Enemy : MonoBehaviour
 {
-	public float hp;
-	public float coinsOnDeath;
+	protected float hp;
+	protected float coinsOnDeath;
+	protected float damageToEarth;
+	protected abstract void SetHealth();
+	protected AudioSource deathAudio;
 
 	[SerializeField] private float speed;
 	private GameObject target;
 	private Vector2 targetPos;
 	private Rigidbody2D rb2D;
 
-	protected float damageToEarth;
-	protected abstract void SetHealth();
 	
 	void Start()
 	{
@@ -58,8 +59,9 @@ abstract public class Enemy : MonoBehaviour
 	
 	private void Die()
 	{
+		deathAudio.Play();
 		// Get money
-		GameObject.Find("CoinManager").GetComponent<CoinManager>().AddCoins((int)coinsOnDeath);
+		CoinManager.coins += (int)coinsOnDeath;
 		Destroy(gameObject);
 	}
 

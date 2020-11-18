@@ -13,7 +13,6 @@ public class WaveSystem : MonoBehaviour
 	private Vector2 screenBounds;
 
 	private int waveIndex;
-	private int enemyIndex;
 
 	// Start is called before the first frame update
 	void Start()
@@ -22,7 +21,6 @@ public class WaveSystem : MonoBehaviour
 
 		waves = new List<Wave>();
 		waveIndex = 0;
-		enemyIndex = 0;
 
 		foreach (Transform child in transform)
 		{

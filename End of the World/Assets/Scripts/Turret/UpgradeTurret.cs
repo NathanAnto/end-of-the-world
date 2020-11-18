@@ -6,6 +6,7 @@ public class UpgradeTurret : MonoBehaviour
 {
 	public List<GameObject> turrets;
 	public GameObject currentTurret;
+	public int upgradeCost;
 
 	private GameObject turret;
 
@@ -18,7 +19,7 @@ public class UpgradeTurret : MonoBehaviour
 
 	public void LevelUp()
 	{
-		var upgradeCost = turret.GetComponent<TurretShoot>().upgradeCost;
+		upgradeCost = turret.GetComponent<TurretShoot>().upgradeCost;
 		Debug.Log("Upgrade cost: " + upgradeCost);
 
 		CoinManager.coins -= upgradeCost;
@@ -30,6 +31,9 @@ public class UpgradeTurret : MonoBehaviour
 
 		// Destroy old GameObject
 		Destroy(turret);
+
+		// Set new upgrade cost
+		upgradeCost = currentTurret.GetComponent<TurretShoot>().upgradeCost;
 
 		// Instatiate new one
 		Instantiate(currentTurret, new Vector3(0, -4.36f, 0), Quaternion.identity, gameObject.transform);
