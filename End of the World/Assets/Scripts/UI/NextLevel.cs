@@ -24,16 +24,17 @@ public class NextLevel : MonoBehaviour
 
 	public void LevelUpTurret()
 	{
+		turret = GameObject.Find("Turret").gameObject.transform.GetChild(1).GetComponent<TurretShoot>();
 		if (CoinManager.coins >= turret.upgradeCost)
 		{
 			LeanTween.scale(gameObject, new Vector2(.1f, .1f), .1f).setLoopPingPong(1);
-			upgradeCanonAudio.Play();
+			FindObjectOfType<AudioManager>().Play("UpgradeCannon");
 			upgradeTurret.LevelUp();
 			btnNextLevel.GetComponentInChildren<TextMeshProUGUI>().text = "Next Level \n" + upgradeTurret.upgradeCost + " Coins";
 		}
 		else
 		{
-			noMoneyAudio.Play();
+			FindObjectOfType<AudioManager>().Play("Nope");
 		}
 	}
 }

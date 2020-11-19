@@ -14,11 +14,11 @@ public class UpgradeTurret : MonoBehaviour
     void Start()
 	{
 		currentTurret = turrets[0];
-		turret = gameObject.transform.GetChild(1).gameObject;
     }
 
 	public void LevelUp()
 	{
+		turret = gameObject.transform.GetChild(1).gameObject;
 		upgradeCost = turret.GetComponent<TurretShoot>().upgradeCost;
 		Debug.Log("Upgrade cost: " + upgradeCost);
 

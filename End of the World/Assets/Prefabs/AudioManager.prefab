@@ -1,0 +1,102 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &751170986950957643
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 751170986950957641}
+  - component: {fileID: 751170986950957642}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &751170986950957641
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 751170986950957643}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.0136352, y: 0.36945692, z: -0.32009682}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &751170986950957642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 751170986950957643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9ef36c7ea1bc6f4397b7feb5efaf60f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Click
+    clip: {fileID: 8300000, guid: 2178b276971471345a0fa6aeed98c355, type: 3}
+    audioMixer: {fileID: 24300002, guid: 7491b849412b876428d843f3b2cb46f1, type: 2}
+    volume: 20
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Nope
+    clip: {fileID: 8300000, guid: bad530d54ed59534982d23421d6688ef, type: 3}
+    audioMixer: {fileID: 24300002, guid: 7491b849412b876428d843f3b2cb46f1, type: 2}
+    volume: 20
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: TurretShoot
+    clip: {fileID: 8300000, guid: 50f7b49c79e1f7844be4075f177e4c00, type: 3}
+    audioMixer: {fileID: 24300002, guid: 7491b849412b876428d843f3b2cb46f1, type: 2}
+    volume: 20
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: EnemyExplode
+    clip: {fileID: 8300000, guid: 9c567e228ed117148b2347830b9ad0e5, type: 3}
+    audioMixer: {fileID: 24300002, guid: 7491b849412b876428d843f3b2cb46f1, type: 2}
+    volume: 20
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: UpgradeCannon
+    clip: {fileID: 8300000, guid: 13a767a46b15b6644b6bd68c335d71d7, type: 3}
+    audioMixer: {fileID: 24300002, guid: 7491b849412b876428d843f3b2cb46f1, type: 2}
+    volume: 20
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: EarthHeal
+    clip: {fileID: 8300000, guid: 02e6a14f6f9d0544295f6cbd14fb6e80, type: 3}
+    audioMixer: {fileID: 24300002, guid: 7491b849412b876428d843f3b2cb46f1, type: 2}
+    volume: 20
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: EarthDamage
+    clip: {fileID: 8300000, guid: 5e616afd44da8644287e90d0b5e5e83c, type: 3}
+    audioMixer: {fileID: 24300002, guid: 7491b849412b876428d843f3b2cb46f1, type: 2}
+    volume: 20
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Music
+    clip: {fileID: 8300000, guid: 84cf2888dc0a99f4b888d438b95cae50, type: 3}
+    audioMixer: {fileID: 24300002, guid: 7491b849412b876428d843f3b2cb46f1, type: 2}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}

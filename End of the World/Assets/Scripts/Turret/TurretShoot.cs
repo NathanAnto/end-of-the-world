@@ -10,9 +10,9 @@ public class TurretShoot : MonoBehaviour
 	[SerializeField] private float fireRate;
 	[SerializeField] private Transform firePoint;
 	[SerializeField] private GameObject bullet;
-	[SerializeField] private AudioSource shootAudio;
 
 	private float nextFire = 0f;
+	private bool canShoot = false;
 
 	// Update is called once per frame
 	void Update()
@@ -20,8 +20,9 @@ public class TurretShoot : MonoBehaviour
 		// Shoot only during a wave
 		if (WaveSystem.state == State.InBattle)
 		{
+			canShoot = Time.time > nextFire;
 			// On left mouse click
-			if (Input.GetButtonDown("Fire1") && Time.time > nextFire)
+			if (Input.GetMouseButton(0) && canShoot) // Input.GetButtonDown("Fire1")
 			{
 				Shoot();
 			}
@@ -30,7 +31,7 @@ public class TurretShoot : MonoBehaviour
 
 	private void Shoot()
 	{
-		shootAudio.Play();
+		FindObjectOfType<AudioManager>().Play("TurretShoot");
 		nextFire = Time.time + fireRate;
 		Instantiate(bullet, firePoint.position, firePoint.rotation);
 	}

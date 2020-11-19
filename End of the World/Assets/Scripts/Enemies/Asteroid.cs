@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Asteroid : Enemy
 {
+	[SerializeField] private AudioSource deathAudio;
+
 	protected override void SetHealth()
 	{
 		deathAudio = GetComponent<AudioSource>();
@@ -15,5 +17,10 @@ public class Asteroid : Enemy
 
 		float scale = hp;
 		transform.localScale = new Vector2(scale, scale);
+	}
+
+	private void OnDestroy()
+	{
+		deathAudio.Play();
 	}
 }

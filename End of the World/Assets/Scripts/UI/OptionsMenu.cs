@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class OptionsMenu : MonoBehaviour
 {
-	[SerializeField] private AudioSource clickAudio;
-	[SerializeField] private GameObject optionsMenu;
+	[SerializeField] private GameObject MainMenu;
 
-	public void CloseOptions()
-	{
-		clickAudio.Play();
+	public void OnBack()
+	{		
 		Debug.Log("Back");
-		optionsMenu.SetActive(false);
+		FindObjectOfType<AudioManager>().Play("Click");
+		MainMenu.SetActive(true);
+		gameObject.SetActive(false);
 	}
 }

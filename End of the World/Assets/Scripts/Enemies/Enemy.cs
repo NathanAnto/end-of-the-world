@@ -8,19 +8,15 @@ abstract public class Enemy : MonoBehaviour
 	protected float coinsOnDeath;
 	protected float damageToEarth;
 	protected abstract void SetHealth();
-	protected AudioSource deathAudio;
 
 	[SerializeField] private float speed;
 	private GameObject target;
 	private Vector2 targetPos;
-	private Rigidbody2D rb2D;
-
 	
 	void Start()
 	{
 		target = GameObject.Find("Earth").gameObject;
 		targetPos = target.transform.position;
-		rb2D = GetComponent<Rigidbody2D>();
 
 		SetHealth();
 	}
@@ -41,10 +37,6 @@ abstract public class Enemy : MonoBehaviour
 				Destroy(gameObject);
 			}
 		}
-		else
-		{
-			rb2D.velocity = Vector3.zero;
-		}
 	}
 
 	public void TakeDamage(float damage)
@@ -59,7 +51,7 @@ abstract public class Enemy : MonoBehaviour
 	
 	private void Die()
 	{
-		deathAudio.Play();
+		FindObjectOfType<AudioManager>().Play("EnemyExplode");
 		// Get money
 		CoinManager.coins += (int)coinsOnDeath;
 		Destroy(gameObject);

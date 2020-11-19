@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 179510359614256606}
   - component: {fileID: 179510359614256593}
   - component: {fileID: 179510359614256592}
-  - component: {fileID: 7960907401246801764}
+  - component: {fileID: 2689904860913009544}
   m_Layer: 0
-  m_Name: Cannon1
+  m_Name: Cannon3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 179510359614256594}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.644, z: 0.25407925}
   m_LocalScale: {x: 6, y: 6, z: 1}
   m_Children:
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 30
-  m_Sprite: {fileID: 21300000, guid: be288a69b0fae774db96cd6cf9ef3e05, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 827b47fa6bdaf574ca7a4160e014e972, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -111,13 +111,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64ff94c35cfd03940ad4684630af1bf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 3
-  upgradeCost: 100
-  fireRate: 0.8
+  damage: 5
+  upgradeCost: 300
+  fireRate: 0.6
   firePoint: {fileID: 179510359708389387}
   bullet: {fileID: 3294754061849984183, guid: 4b62e1f3851633b4a8240f41ea5bbe0e, type: 3}
-  shootAudio: {fileID: 7960907401246801764}
---- !u!82 &7960907401246801764
+  shootAudio: {fileID: 2689904860913009544}
+--- !u!82 &2689904860913009544
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -314,7 +314,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 25
-  m_Sprite: {fileID: 21300000, guid: b61c0bbb7c78c504b99f8f1314780803, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 92b2bdf346ced224d8a451e790bcfe20, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

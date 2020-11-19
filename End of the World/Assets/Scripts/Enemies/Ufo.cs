@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Ufo : Enemy
 {
+	[SerializeField] private AudioSource deathAudio;
+
 	protected override void SetHealth()
 	{
 		deathAudio = GetComponent<AudioSource>();
@@ -11,5 +13,10 @@ public class Ufo : Enemy
 		damageToEarth = 10f;
 		hp = Random.Range(10, 21);
 		coinsOnDeath = Random.Range(5, 11);
+	}
+
+	private void OnDestroy()
+	{
+		deathAudio.Play();
 	}
 }

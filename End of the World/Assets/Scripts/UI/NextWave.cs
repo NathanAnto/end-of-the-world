@@ -16,7 +16,7 @@ public class NextWave : MonoBehaviour
 
     public void StartNextWave()
 	{
-		clickAudio.Play(0);
+		FindObjectOfType<AudioManager>().Play("Click");
 		wave.StartNextWave();
 	}
 }

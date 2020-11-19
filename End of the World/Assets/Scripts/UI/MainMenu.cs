@@ -6,27 +6,25 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-	[SerializeField] private AudioSource clickAudio;
 	[SerializeField] private GameObject optionsMenu;
 
 	public void PlayGame()
 	{
-		clickAudio.Play();
-		while (clickAudio.isPlaying) { }
-
+		FindObjectOfType<AudioManager>().Play("Click");
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 	}
 
 	public void OpenOptions()
 	{
-		clickAudio.Play();
+		FindObjectOfType<AudioManager>().Play("Click");
 		Debug.Log("Options");
 		optionsMenu.SetActive(true);
+		gameObject.SetActive(false);
 	}
 
 	public void QuitGame()
 	{
-		clickAudio.Play();
+		FindObjectOfType<AudioManager>().Play("Click");
 		Debug.Log("Quit game");
 		Application.Quit();
 	}

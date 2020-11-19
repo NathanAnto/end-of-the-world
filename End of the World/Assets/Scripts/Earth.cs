@@ -6,7 +6,7 @@ public class Earth : MonoBehaviour
 {
 	public float health;
 
-	[SerializeField] private HealthBar healthBar;
+	private HealthBar healthBar;
 
 	private float maxHealth = 100f;
 
@@ -18,12 +18,14 @@ public class Earth : MonoBehaviour
 
 	public void DamageEarth(float damage)
 	{
+		FindObjectOfType<AudioManager>().Play("EarthDamage");
 		health -= damage;
 		healthBar.SetHealth(health);
 	}
 
     public void HealEarth()
 	{
+		FindObjectOfType<AudioManager>().Play("EarthHeal");
 		health += 10f;
 		healthBar.SetHealth(health);
 	}

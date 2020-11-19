@@ -25,6 +25,7 @@ public class Pause : MonoBehaviour
 	}
 	private void PauseGame()
 	{
+		FindObjectOfType<AudioManager>().Play("Click");
 		Debug.Log("Pause game");
 		WaveSystem.state = State.Paused;
 
@@ -35,6 +36,7 @@ public class Pause : MonoBehaviour
 
 	public void ContinueGame()
 	{
+		FindObjectOfType<AudioManager>().Play("Click");
 		Debug.Log("Resume game");
 		if (upgradeMenu.activeInHierarchy)
 		{

@@ -6,8 +6,6 @@ using UnityEngine.UI;
 public class HealEarth : MonoBehaviour
 {
 	[SerializeField] private Button btnHeal;
-	[SerializeField] private AudioSource healAudio;
-	[SerializeField] private AudioSource noMoneyAudio;
 
 	private Earth earth;
 
@@ -27,7 +25,6 @@ public class HealEarth : MonoBehaviour
 			{
 				CoinManager.coins -= healCost;
 				earth.HealEarth();
-				healAudio.Play();
 				LeanTween.scale(gameObject, new Vector2(1f, 1f), .1f).setLoopPingPong(1);
 			}
 			else
@@ -44,6 +41,6 @@ public class HealEarth : MonoBehaviour
 
 	private void CantHeal()
 	{
-		noMoneyAudio.Play();
+		FindObjectOfType<AudioManager>().Play("Nope");
 	}
 }
