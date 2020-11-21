@@ -12,12 +12,16 @@ public class AudioManager : MonoBehaviour
     void Awake()
     {
 		if (instance == null)
+		{
 			instance = this;
+		}
 		else
 		{
-			DontDestroyOnLoad(gameObject);
+			Destroy(gameObject);
 			return;
 		}
+
+		DontDestroyOnLoad(gameObject);
 
 		foreach (Sound s in sounds)
 		{
@@ -29,10 +33,7 @@ public class AudioManager : MonoBehaviour
 			s.source.loop = s.loop;
 			s.source.outputAudioMixerGroup = s.audioMixer;
 		}
-    }
 
-	private void Start()
-	{
 		instance.Play("Music");
 	}
 
@@ -44,6 +45,7 @@ public class AudioManager : MonoBehaviour
 			Debug.LogWarning("Sound " + name + " not found.");
 			return;
 		}
-		s.source.Play();
+		else { s.source.Play(); }
+		
 	}
 }

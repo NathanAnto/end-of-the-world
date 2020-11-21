@@ -9,7 +9,7 @@ public class OptionsMenu : MonoBehaviour
 	public void OnBack()
 	{		
 		Debug.Log("Back");
-		FindObjectOfType<AudioManager>().Play("Click");
+		AudioManager.instance.Play("Click");
 		MainMenu.SetActive(true);
 		gameObject.SetActive(false);
 	}

@@ -31,7 +31,7 @@ public class TurretShoot : MonoBehaviour
 
 	private void Shoot()
 	{
-		FindObjectOfType<AudioManager>().Play("TurretShoot");
+		AudioManager.instance.Play("TurretShoot");
 		nextFire = Time.time + fireRate;
 		Instantiate(bullet, firePoint.position, firePoint.rotation);
 	}

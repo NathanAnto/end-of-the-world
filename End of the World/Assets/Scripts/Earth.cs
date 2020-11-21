@@ -18,14 +18,14 @@ public class Earth : MonoBehaviour
 
 	public void DamageEarth(float damage)
 	{
-		FindObjectOfType<AudioManager>().Play("EarthDamage");
+		AudioManager.instance.Play("EarthDamage");
 		health -= damage;
 		healthBar.SetHealth(health);
 	}
 
     public void HealEarth()
 	{
-		FindObjectOfType<AudioManager>().Play("EarthHeal");
+		AudioManager.instance.Play("EarthHeal");
 		health += 10f;
 		healthBar.SetHealth(health);
 	}

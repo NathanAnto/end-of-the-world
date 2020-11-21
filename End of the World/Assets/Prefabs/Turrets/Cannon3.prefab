@@ -111,12 +111,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64ff94c35cfd03940ad4684630af1bf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 4
   upgradeCost: 300
   fireRate: 0.6
   firePoint: {fileID: 179510359708389387}
   bullet: {fileID: 3294754061849984183, guid: 4b62e1f3851633b4a8240f41ea5bbe0e, type: 3}
-  shootAudio: {fileID: 2689904860913009544}
 --- !u!82 &2689904860913009544
 AudioSource:
   m_ObjectHideFlags: 0
@@ -126,7 +125,7 @@ AudioSource:
   m_GameObject: {fileID: 179510359614256594}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: e534cf6b18afcd642a910b26810d2525, type: 2}
+  OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 50f7b49c79e1f7844be4075f177e4c00, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1

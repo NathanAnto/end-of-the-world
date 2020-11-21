@@ -10,13 +10,13 @@ public class MainMenu : MonoBehaviour
 
 	public void PlayGame()
 	{
-		FindObjectOfType<AudioManager>().Play("Click");
+		AudioManager.instance.Play("Click");
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 	}
 
 	public void OpenOptions()
 	{
-		FindObjectOfType<AudioManager>().Play("Click");
+		AudioManager.instance.Play("Click");
 		Debug.Log("Options");
 		optionsMenu.SetActive(true);
 		gameObject.SetActive(false);
@@ -24,7 +24,7 @@ public class MainMenu : MonoBehaviour
 
 	public void QuitGame()
 	{
-		FindObjectOfType<AudioManager>().Play("Click");
+		AudioManager.instance.Play("Click");
 		Debug.Log("Quit game");
 		Application.Quit();
 	}

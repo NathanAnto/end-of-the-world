@@ -8,17 +8,25 @@ abstract public class Enemy : MonoBehaviour
 	protected float coinsOnDeath;
 	protected float damageToEarth;
 	protected abstract void SetHealth();
+	protected GameObject target;
 
-	[SerializeField] private float speed;
-	private GameObject target;
-	private Vector2 targetPos;
-	
+	[SerializeField] protected float speed;
+	[SerializeField] private Animator anim;
+
+	protected Vector2 targetPos;
+	private bool Death
+	{
+		get
+		{
+			return hp <= 0;
+		}
+	}
+
 	void Start()
 	{
-		target = GameObject.Find("Earth").gameObject;
-		targetPos = target.transform.position;
-
 		SetHealth();
+		targetPos = target.transform.position;
+		anim = gameObject.GetComponent<Animator>();
 	}
 	
     void Update()
@@ -43,7 +51,7 @@ abstract public class Enemy : MonoBehaviour
 	{
 		hp -= damage;
 
-		if (hp <= 0)
+		if (Death)
 		{
 			Die();
 		}
@@ -51,10 +59,13 @@ abstract public class Enemy : MonoBehaviour
 	
 	private void Die()
 	{
-		FindObjectOfType<AudioManager>().Play("EnemyExplode");
+		damageToEarth = 0;
+		anim.SetTrigger("Death");
+		gameObject.GetComponent<PolygonCollider2D>().enabled = false;
+		AudioManager.instance.Play("EnemyExplode");
 		// Get money
 		CoinManager.coins += (int)coinsOnDeath;
-		Destroy(gameObject);
+		Destroy(gameObject, .8f);
 	}
-
 }
+;

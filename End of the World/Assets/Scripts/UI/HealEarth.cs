@@ -41,6 +41,6 @@ public class HealEarth : MonoBehaviour
 
 	private void CantHeal()
 	{
-		FindObjectOfType<AudioManager>().Play("Nope");
+		AudioManager.instance.Play("Nope");
 	}
 }

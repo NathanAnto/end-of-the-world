@@ -8,7 +8,6 @@ public class SetSliderLevel : MonoBehaviour
 
 	public void SetLevel(float sliderValue)
 	{
-		Debug.Log("Changed volume");
 		float newValue = Mathf.Log10(sliderValue) * 20;
 		audioMixer.SetFloat("MusicVolume", newValue);
 	}

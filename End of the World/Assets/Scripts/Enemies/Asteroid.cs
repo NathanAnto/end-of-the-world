@@ -4,23 +4,15 @@ using UnityEngine;
 
 public class Asteroid : Enemy
 {
-	[SerializeField] private AudioSource deathAudio;
-
 	protected override void SetHealth()
 	{
-		deathAudio = GetComponent<AudioSource>();
-
 		hp = Random.Range(10, 21);
 
 		damageToEarth = hp - 5f;
-		coinsOnDeath = hp-5;
+		coinsOnDeath = hp - 5;
 
 		float scale = hp;
 		transform.localScale = new Vector2(scale, scale);
-	}
-
-	private void OnDestroy()
-	{
-		deathAudio.Play();
+		target = GameObject.Find("Earth").gameObject;
 	}
 }

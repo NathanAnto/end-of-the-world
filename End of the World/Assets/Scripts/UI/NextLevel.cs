@@ -28,13 +28,13 @@ public class NextLevel : MonoBehaviour
 		if (CoinManager.coins >= turret.upgradeCost)
 		{
 			LeanTween.scale(gameObject, new Vector2(.1f, .1f), .1f).setLoopPingPong(1);
-			FindObjectOfType<AudioManager>().Play("UpgradeCannon");
+			AudioManager.instance.Play("UpgradeCannon");
 			upgradeTurret.LevelUp();
 			btnNextLevel.GetComponentInChildren<TextMeshProUGUI>().text = "Next Level \n" + upgradeTurret.upgradeCost + " Coins";
 		}
 		else
 		{
-			FindObjectOfType<AudioManager>().Play("Nope");
+			AudioManager.instance.Play("Nope");
 		}
 	}
 }
