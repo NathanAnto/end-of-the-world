@@ -10,6 +10,7 @@ public class Ufo : Enemy
 	private float fireRate = 1.5f;
 	private float nextFire = 0f;
 	private bool canShoot = false;
+	private bool beamStarted = false;
 
 	protected override void SetHealth()
 	{
@@ -21,29 +22,44 @@ public class Ufo : Enemy
 		earth = GameObject.Find("Earth").GetComponent<Earth>();
 	}
 
-	void Update()
+	protected override void Move()
 	{
-		float dist = Vector2.Distance(target.transform.position, gameObject.transform.position);
-		Debug.Log("Distance: " + dist);
-		Debug.Log("Target: " + target);
-		Debug.Log("Speed: " + speed);
-		if (dist < 8f)
+		if(hp <= 0)
 		{
-			StartBeam();
+			gameObject.GetComponent<ParticleSystem>().Play();
+		}
+
+		if (WaveSystem.state == State.InBattle)
+		{
+			transform.position = Vector2.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
+
+			float dist = Vector2.Distance(target.transform.position, gameObject.transform.position);
+			
+			if (dist < 8f)
+			{
+				if(beamStarted)
+				{
+					ShootEarth();
+					target = gameObject;
+				}
+				else
+				{
+					nextFire = Time.time + fireRate;
+					gameObject.GetComponent<ParticleSystem>().Play();
+					beamStarted = true;
+				}
+			}
 		}
 	}
 
-	private void StartBeam()
+	private void ShootEarth()
 	{
-		transform.position = Vector2.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
-		gameObject.GetComponent<ParticleSystem>().Play();
-
 		canShoot = Time.time > nextFire;
 
 		// On left mouse click
 		if (canShoot)
 		{
-			Debug.Log("BEAM !");
+			Debug.Log("Shoot !");
 			earth.DamageEarth(2f);
 			nextFire = Time.time + fireRate;
 		}

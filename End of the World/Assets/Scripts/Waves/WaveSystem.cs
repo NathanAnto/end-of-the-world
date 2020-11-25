@@ -8,6 +8,8 @@ public class WaveSystem : MonoBehaviour
 
 	[SerializeField] private List<Wave> waves;
 	[SerializeField] private GameObject upgradeMenu;
+	[SerializeField] private LevelLoader levelLoader;
+
 
 	private Wave currentWave;
 	private Vector2 screenBounds;
@@ -61,7 +63,10 @@ public class WaveSystem : MonoBehaviour
 					}
 				}
 			}
-			
+			else if(state == State.Lost)
+			{
+				Debug.Log("Game over");
+			}
 		}
 	}
 
@@ -97,5 +102,7 @@ public enum State
 {
 	InBattle,
 	Upgrading,
-	Paused
+	Paused,
+	Lost,
+	Won,
 }

@@ -7,11 +7,12 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
 	[SerializeField] private GameObject optionsMenu;
+	[SerializeField] private LevelLoader levelLoader;
 
 	public void PlayGame()
 	{
 		AudioManager.instance.Play("Click");
-		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+		levelLoader.PlayFade();
 	}
 
 	public void OpenOptions()

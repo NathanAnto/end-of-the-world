@@ -8,12 +8,16 @@ abstract public class Enemy : MonoBehaviour
 	protected float coinsOnDeath;
 	protected float damageToEarth;
 	protected abstract void SetHealth();
+	protected abstract void Move();
 	protected GameObject target;
+	protected Vector2 targetPos;
 
 	[SerializeField] protected float speed;
-	[SerializeField] private Animator anim;
+	private SpriteRenderer spriteRenderer;
+	private Animator anim;
+	private float flashTime = 0.1f;
+	private Color origionalColor;
 
-	protected Vector2 targetPos;
 	private bool Death
 	{
 		get
@@ -26,29 +30,20 @@ abstract public class Enemy : MonoBehaviour
 	{
 		SetHealth();
 		targetPos = target.transform.position;
-		anim = gameObject.GetComponent<Animator>();
+		anim = GetComponent<Animator>();
+		spriteRenderer = GetComponent<SpriteRenderer>();
+		origionalColor = spriteRenderer.color;
 	}
 	
     void Update()
     {
-		if (WaveSystem.state == State.InBattle)
-		{ 
-			float step = speed * Time.deltaTime;
-			transform.position = Vector2.MoveTowards(transform.position, targetPos, step);
-
-			Earth earth = target.GetComponent<Earth>();
-
-			if (transform.position == target.transform.position)
-			{
-				Debug.Log(damageToEarth + " Damage dealt to earth");
-				earth.DamageEarth(damageToEarth);
-				Destroy(gameObject);
-			}
-		}
+		Move();
 	}
 
 	public void TakeDamage(float damage)
 	{
+		FlashRed();
+
 		hp -= damage;
 
 		if (Death)
@@ -67,5 +62,35 @@ abstract public class Enemy : MonoBehaviour
 		CoinManager.coins += (int)coinsOnDeath;
 		Destroy(gameObject, .8f);
 	}
+
+	private void FlashRed()
+	{
+		Debug.Log(spriteRenderer.color);
+		spriteRenderer.color = Color.red;
+		Invoke("ResetColor", flashTime);
+	}
+	private void ResetColor()
+	{
+		spriteRenderer.color = origionalColor;
+	}
 }
 ;
+
+/* 
+ public float flashTime;
+ Color origionalColor
+ public MeshRenderer renderer;
+ void Start()
+ {
+     origionalColor = renderer.color;
+ }
+ void FlashRed()
+ {
+     renderer.color = Color.red;
+     Invoke("ResetColor", flashTime);
+ }
+ void ResetColor()
+ {
+      renderer.color = origionalColor;
+ }
+*/
