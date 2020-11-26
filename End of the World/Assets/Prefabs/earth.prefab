@@ -96,4 +96,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  levelLoader: {fileID: 0}
+  duration: 0.15
+  magnitude: 0.4

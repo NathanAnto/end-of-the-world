@@ -65,7 +65,6 @@ abstract public class Enemy : MonoBehaviour
 
 	private void FlashRed()
 	{
-		Debug.Log(spriteRenderer.color);
 		spriteRenderer.color = Color.red;
 		Invoke("ResetColor", flashTime);
 	}

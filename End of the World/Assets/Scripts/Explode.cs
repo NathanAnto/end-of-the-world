@@ -18,7 +18,6 @@ public class Explode : MonoBehaviour
 		while(true)
 		{
 			float rand = Random.Range(0.0f, 8.0f);
-			Debug.Log(rand);
 			yield return new WaitForSeconds(rand);
 			anim.SetTrigger("Explode");
 		}

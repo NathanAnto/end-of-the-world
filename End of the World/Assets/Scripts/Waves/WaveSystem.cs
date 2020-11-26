@@ -8,8 +8,8 @@ public class WaveSystem : MonoBehaviour
 
 	[SerializeField] private List<Wave> waves;
 	[SerializeField] private GameObject upgradeMenu;
+	[SerializeField] private GameObject bossPrefab;
 	[SerializeField] private LevelLoader levelLoader;
-
 
 	private Wave currentWave;
 	private Vector2 screenBounds;
@@ -53,8 +53,7 @@ public class WaveSystem : MonoBehaviour
 					{
 						Debug.Log("End of Wave");
 						// End of wave
-						WaveSystem.state = State.Upgrading;
-						currentWave.isWaveDone = true;
+						state = State.Upgrading;
 
 						// Open Upgrade Menu
 						upgradeMenu.SetActive(true);
@@ -63,10 +62,6 @@ public class WaveSystem : MonoBehaviour
 					}
 				}
 			}
-			else if(state == State.Lost)
-			{
-				Debug.Log("Game over");
-			}
 		}
 	}
 
@@ -74,8 +69,6 @@ public class WaveSystem : MonoBehaviour
 	{
 		if(currentWave.enemies.Count > 0)
 		{
-			Debug.Log("Spawning Enemy");
-
 			var enemy = currentWave.enemies[0];
 			currentWave.enemies.Remove(enemy);
 
@@ -87,14 +80,31 @@ public class WaveSystem : MonoBehaviour
 	// Start next wave when done upgrading
 	public void StartNextWave()
 	{
-		Debug.Log("Next Wave");
-		currentWave = waves[waveIndex];
-		waveIndex++;
+		try
+		{
+			Debug.Log("Next Wave");
+			currentWave = waves[waveIndex];
+			waveIndex++;
+			state = State.InBattle;
+			upgradeMenu.SetActive(false);
+
+			// Start wave spawning
+			StartCoroutine(EnemySpawning());
+		}
+		catch (System.Exception)
+		{
+			Debug.Log("Final Wave");
+			PlayBossBattle();
+		}
+	}
+
+	private void PlayBossBattle()
+	{
 		state = State.InBattle;
 		upgradeMenu.SetActive(false);
 
-		// Start wave spawning
-		StartCoroutine(EnemySpawning());
+		// Start boss battle
+		Instantiate(bossPrefab);
 	}
 }
 

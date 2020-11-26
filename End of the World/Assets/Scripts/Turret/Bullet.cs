@@ -19,12 +19,18 @@ public class Bullet : MonoBehaviour
 	void OnTriggerEnter2D(Collider2D hitInfo)
 	{
 		var enemy = hitInfo.GetComponent<Enemy>();
+		var boss = hitInfo.GetComponent<BossBattle>();
+
 		var damage = GameObject.Find("Turret").gameObject.transform.GetChild(1).GetComponent<TurretShoot>().damage;
 
 		if (enemy != null)
 		{
-			Debug.Log("Enemy hit");
 			enemy.TakeDamage(damage);
+			Destroy(gameObject);
+		}
+		else if(boss != null)
+		{
+			boss.DamageMoon(damage);
 			Destroy(gameObject);
 		}
 	}

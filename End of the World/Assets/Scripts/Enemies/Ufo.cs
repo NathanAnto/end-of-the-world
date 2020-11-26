@@ -26,7 +26,7 @@ public class Ufo : Enemy
 	{
 		if(hp <= 0)
 		{
-			gameObject.GetComponent<ParticleSystem>().Play();
+			gameObject.GetComponent<ParticleSystem>().Stop();
 		}
 
 		if (WaveSystem.state == State.InBattle)
