@@ -51,8 +51,11 @@ MonoBehaviour:
   - {fileID: 179510359614256594, guid: 02d37d6b7744ee24e90ad2f8e82cb1bd, type: 3}
   - {fileID: 179510359614256594, guid: b9abf65310ca1904296b7b09ad11ed63, type: 3}
   - {fileID: 179510359614256594, guid: bf8ed07eeb993f54b9228ed27e815ce7, type: 3}
+  - {fileID: 179510359614256594, guid: c08d971a955f62a4abcab43bfb333368, type: 3}
+  - {fileID: 179510359614256594, guid: b66b0ba473133e345a1f96830869972f, type: 3}
   currentTurret: {fileID: 0}
   upgradeCost: 0
+  isMaxLevel: 0
 --- !u!114 &1821904492
 MonoBehaviour:
   m_ObjectHideFlags: 0

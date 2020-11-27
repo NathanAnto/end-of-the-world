@@ -1,12 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class LevelLoader : MonoBehaviour
 {
 	[SerializeField] private Animator transition;
 	[SerializeField] private int transitionTime;
+	[SerializeField] private AudioMixer audioMixer;
+
+	void Start()
+	{
+		audioMixer.SetFloat("MusicVolume", Mathf.Log10(.5f) * 20);
+	}
 
 	public void PlayFade()
 	{

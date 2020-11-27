@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 4
-  upgradeCost: 300
+  upgradeCost: 200
   fireRate: 0.6
   firePoint: {fileID: 179510359708389387}
   bullet: {fileID: 3294754061849984183, guid: 4b62e1f3851633b4a8240f41ea5bbe0e, type: 3}
