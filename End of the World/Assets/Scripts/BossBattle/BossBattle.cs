@@ -7,8 +7,9 @@ public class BossBattle : MonoBehaviour
 	public float health;
 	public float maxHealth = 500f;
 
-	[SerializeField] private GameObject[] enemies;
+	[SerializeField] private GameObject[] ufoEnemies;
 	[SerializeField] private GameObject asteroid;
+	[SerializeField] private LevelLoader levelLoader;
 
 	[SerializeField] private SpriteRenderer spriteRenderer;
 	[SerializeField] private Sprite moon;
@@ -18,6 +19,7 @@ public class BossBattle : MonoBehaviour
 	private GameObject target;
 	private CircleCollider2D coll;
 	private HealthBar bossHealth;
+	private GameObject[] enemies;
 	private IEnumerator vulnerable;
 	private IEnumerator ufos;
 	private IEnumerator switching;
@@ -39,6 +41,7 @@ public class BossBattle : MonoBehaviour
 		bossSlider.transform.GetChild(0).gameObject.SetActive(true);
 		bossSlider.transform.GetChild(1).gameObject.SetActive(true);
 		bossHealth = bossSlider.GetComponent<HealthBar>();
+		levelLoader = GameObject.Find("LevelLoader").GetComponent<LevelLoader>();
 		bossHealth.SetMaxHealth(maxHealth);
 		target = GameObject.Find("Earth").gameObject;
 		coll = GetComponent<CircleCollider2D>();
@@ -59,7 +62,7 @@ public class BossBattle : MonoBehaviour
     void Update()
     {
 		Move();
-		Debug.Log(canBeDamaged);
+		Debug.Log("Can be damaged " + canBeDamaged);
 		if(canBeDamaged)
 			coll.enabled = true;
 		else
@@ -69,9 +72,8 @@ public class BossBattle : MonoBehaviour
 		{
 			if (!isSpawning)
 			{
+				Debug.Log("Devil mode");
 				spriteRenderer.sprite = devilMoon;
-				canBeDamaged = true;
-				isSpawning = true;
 
 				// Restart coroutines
 				StopCoroutine(vulnerable);
@@ -79,6 +81,9 @@ public class BossBattle : MonoBehaviour
 				StopCoroutine(switching);
 				StartCoroutine(vulnerable);
 				StartCoroutine(ufos);
+
+				canBeDamaged = true;
+				isSpawning = true;
 			}
 		}
 		else
@@ -108,7 +113,6 @@ public class BossBattle : MonoBehaviour
 			}
 		}
 
-
 		if(health <= 0)
 		{
 			EndGame();
@@ -117,7 +121,14 @@ public class BossBattle : MonoBehaviour
 
 	private void EndGame()
 	{
-		throw new NotImplementedException();
+		enemies = GameObject.FindGameObjectsWithTag("Enemy");
+		foreach (GameObject enemy in enemies)
+		{
+			enemy.GetComponent<Enemy>().TakeDamage(1000);
+		}
+
+		levelLoader.LoadWin();
+		Destroy(gameObject);
 	}
 
 	private void FlashRed()
@@ -187,7 +198,7 @@ public class BossBattle : MonoBehaviour
 		{
 			yield return new WaitForSeconds(spawnRate);
 
-			GameObject newEnemy = Instantiate(enemies[UnityEngine.Random.Range(0, enemies.Length)]) as GameObject;
+			GameObject newEnemy = Instantiate(ufoEnemies[UnityEngine.Random.Range(0, ufoEnemies.Length)]) as GameObject;
 			newEnemy.transform.position = new Vector2(UnityEngine.Random.Range(-screenBounds.x, screenBounds.x), screenBounds.y * 2);
 		}
 	}

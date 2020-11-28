@@ -61,7 +61,7 @@ MonoBehaviour:
   - name: TurretShoot
     clip: {fileID: 8300000, guid: 50f7b49c79e1f7844be4075f177e4c00, type: 3}
     audioMixer: {fileID: 24300002, guid: 7491b849412b876428d843f3b2cb46f1, type: 2}
-    volume: 20
+    volume: 0.5
     pitch: 1
     loop: 0
     source: {fileID: 0}

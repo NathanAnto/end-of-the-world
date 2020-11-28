@@ -1,5 +1,4 @@
-﻿using UnityEngine.Audio;
-using UnityEngine;
+﻿using UnityEngine;
 using System;
 
 public class AudioManager : MonoBehaviour
@@ -45,7 +44,11 @@ public class AudioManager : MonoBehaviour
 			Debug.LogWarning("Sound " + name + " not found.");
 			return;
 		}
-		else { s.source.Play(); }
-		
+		else { s.source.Play(); }		
+	}
+	
+	public void SetMusicVol(float volume)
+	{
+		sounds[sounds.Length - 1].volume = volume;
 	}
 }

@@ -27,6 +27,12 @@ public class LevelLoader : MonoBehaviour
 		StartCoroutine(LoadNextScene(2));
 	}
 
+	public void LoadWin()
+	{
+		// Load Game Scene
+		StartCoroutine(LoadNextScene(4));
+	}
+
 	public void LoadLost()
 	{
 		// Load Game Scene

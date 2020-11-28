@@ -25,6 +25,7 @@ public class NextLevel : MonoBehaviour
 	public void LevelUpTurret()
 	{
 		turret = GameObject.Find("Turret").gameObject.transform.GetChild(1).GetComponent<TurretShoot>();
+
 		if (CoinManager.coins >= turret.upgradeCost && !upgradeTurret.isMaxLevel)
 		{
 			LeanTween.scale(gameObject, new Vector2(.1f, .1f), .1f).setLoopPingPong(1);

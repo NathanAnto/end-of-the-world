@@ -12,7 +12,7 @@ public class CoinManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-		coins = 2000;
+		coins = 0;
 		coinText = GameObject.Find("Canvas/Coins").GetComponent<Text>();
     }
 

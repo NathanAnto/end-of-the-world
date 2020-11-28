@@ -98,7 +98,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   maxHealth: 500
-  enemies:
+  ufoEnemies:
+  - {fileID: 3923733215580687030, guid: 58639fad203ca7d4f97101230a57b38a, type: 3}
   - {fileID: 3923733215580687030, guid: 58639fad203ca7d4f97101230a57b38a, type: 3}
   - {fileID: 638348082440198763, guid: 026d5b41b558977478f62d1da6a7c93a, type: 3}
   asteroid: {fileID: 3912700633370644507, guid: e21ee5045b3049a41b074ef128fd827c, type: 3}
